@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家庭发展系统 | 精密知识操作系统</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .tagline {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .card h2 {
+            color: #3498db;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+        }
+        .card ul {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        .card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .card li:last-child {
+            border-bottom: none;
+        }
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background 0.3s ease;
+            margin: 10px 5px;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        .btn-success {
+            background: #2ecc71;
+        }
+        .btn-success:hover {
+            background: #27ae60;
+        }
+        .cta-section {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 家庭发展系统</h1>
+            <p class="tagline">精密知识操作系统 · 实现家庭跨越式发展</p>
+            <p>一套完整的家庭发展方法论，涵盖理财、教育、健康、职业规划等多个维度</p>
+        </header>
+
+        <div class="content-grid">
+            <div class="card">
+                <h2>📚 免费内容</h2>
+                <p>立即开始学习家庭发展的基础知识：</p>
+                <ul>
+                    <li>✅ 家庭理财入门指南</li>
+                    <li>✅ 亲子教育基础原则</li>
+                    <li>✅ 健康生活习惯养成</li>
+                    <li>✅ 家庭关系维护技巧</li>
+                    <li>✅ 职业发展规划基础</li>
+                </ul>
+                <a href="#" class="btn btn-success">立即获取免费内容</a>
+            </div>
+
+            <div class="card">
+                <h2>💎 付费会员权益</h2>
+                <p>订阅高级会员，获取完整系统：</p>
+                <ul>
+                    <li>📖 完整四卷PDF文档</li>
+                    <li>🔄 每周更新工具模板</li>
+                    <li>👨‍👩‍👧‍👦 专属社群交流</li>
+                    <li>🎥 会员专属视频课程</li>
+                    <li>📊 个性化家庭规划工具</li>
+                    <li>🔗 一对一咨询机会</li>
+                </ul>
+                <a href="#" class="btn">订阅高级会员</a>
+            </div>
+
+            <div class="card">
+                <h2>🎯 系统特色</h2>
+                <ul>
+                    <li>🔥 基于科学研究的实践方法</li>
+                    <li>💡 超过10年的经验总结</li>
+                    <li>🔄 持续更新的内容体系</li>
+                    <li>🤝 社区支持与交流</li>
+                    <li>📈 可量化的成果指标</li>
+                    <li>🎨 适合不同家庭情况</li>
+                </ul>
+                <p>已经帮助500+家庭实现目标</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>🚀 立即开始改变你的家庭</h2>
+            <p>无论你是刚刚组建家庭，还是希望提升现有家庭的生活质量，这套系统都能为你提供清晰的路径和实用的工具。</p>
+            
+            <div style="margin: 30px 0;">
+                <a href="#" class="btn btn-success">开始免费学习</a>
+                <a href="#" class="btn">订阅高级版 ($29.99/月)</a>
+            </div>
+            
+            <p style="color: #7f8c8d; font-size: 0.9em;">
+                💰 30天无条件退款保证 · 📧 支持中文客服 · 🔒 安全支付
+            </p>
+        </div>
+
+        <footer>
+            <p>© 2024 家庭发展系统 · 精密知识操作系统</p>
+            <p>联系方式：您的邮箱 · 网站托管于 Netlify</p>
+        </footer>
+    </div>
+
+    <script>
+        // 简单的交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为所有按钮添加点击提示
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        alert('功能即将上线！目前网站正在建设中，稍后会添加完整功能。');
+                    }
+                });
+            });
+            
+            // 添加访问时间显示
+            const now = new Date();
+            const visitTime = document.createElement('p');
+            visitTime.textContent = `您于 ${now.toLocaleDateString('zh-CN')} ${now.toLocaleTimeString('zh-CN')} 访问本站`;
+            visitTime.style.color = '#7f8c8d';
+            visitTime.style.fontSize = '0.8em';
+            visitTime.style.marginTop = '10px';
+            document.querySelector('footer').appendChild(visitTime);
+        });
+    </script>
+</body>
+</html>
