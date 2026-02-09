@@ -5,322 +5,830 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>《初中一年级家庭成长陪伴手册》完整版 | 3.4万字深度指南</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* 基础样式 - 保证阅读舒适 */
+        /* ===== CSS变量与基础重置 ===== */
+        :root {
+            /* 科技蓝主色调 */
+            --primary-blue: #0a6cff;
+            --primary-blue-dark: #0052cc;
+            --primary-blue-light: #4d94ff;
+            --primary-blue-ultralight: #e6f0ff;
+            
+            /* 中性色系 */
+            --neutral-black: #1a1a1a;
+            --neutral-dark: #2d2d2d;
+            --neutral-gray: #6b7280;
+            --neutral-light: #f5f7fa;
+            --neutral-white: #ffffff;
+            
+            /* 辅助色 */
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-purple: #8b5cf6;
+            
+            /* 阴影系统 */
+            --shadow-sm: 0 2px 8px rgba(10, 108, 255, 0.08);
+            --shadow-md: 0 4px 16px rgba(10, 108, 255, 0.12);
+            --shadow-lg: 0 8px 32px rgba(10, 108, 255, 0.16);
+            --shadow-xl: 0 16px 48px rgba(10, 108, 255, 0.2);
+            
+            /* 间距系统 */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+            
+            /* 字体大小 */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            
+            /* 圆角 */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-full: 9999px;
+            
+            /* 过渡 */
+            --transition-fast: 150ms ease;
+            --transition-base: 250ms ease;
+            --transition-slow: 350ms ease;
+        }
+        
+        /* 暗色主题变量 */
+        .dark-mode {
+            --primary-blue: #3b82f6;
+            --primary-blue-dark: #1d4ed8;
+            --primary-blue-light: #60a5fa;
+            --primary-blue-ultralight: #1e293b;
+            
+            --neutral-black: #f8fafc;
+            --neutral-dark: #e2e8f0;
+            --neutral-gray: #94a3b8;
+            --neutral-light: #1e293b;
+            --neutral-white: #0f172a;
+            
+            --accent-green: #34d399;
+            --accent-orange: #fbbf24;
+            --accent-purple: #a78bfa;
+            
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.35);
+            --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* 基础重置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
-        body {
-            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: #f8f9fa;
-            max-width: 100%;
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
         
-        /* 智能导航栏 - 始终可见 */
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.7;
+            color: var(--neutral-dark);
+            background-color: var(--neutral-white);
+            transition: background-color var(--transition-base), color var(--transition-base);
+            overflow-x: hidden;
+        }
+        
+        /* ===== 智能导航栏 ===== */
         #smart-nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background: white;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            height: 70px;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(10, 108, 255, 0.1);
+            box-shadow: var(--shadow-sm);
             z-index: 1000;
-            padding: 10px 20px;
+            transition: all var(--transition-base);
+        }
+        
+        .dark-mode #smart-nav {
+            background-color: rgba(15, 23, 42, 0.95);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
         }
         
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            height: 100%;
+            max-width: 1400px;
             margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .nav-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
         }
         
         .nav-title {
-            font-size: 1.1em;
-            color: #333;
-            font-weight: 600;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--neutral-black);
+            letter-spacing: -0.01em;
+        }
+        
+        .dark-mode .nav-title {
+            color: var(--neutral-black);
         }
         
         .nav-controls {
             display: flex;
-            gap: 10px;
+            align-items: center;
+            gap: var(--space-xs);
         }
         
         .nav-btn {
-            background: #555;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
+            background: transparent;
+            color: var(--neutral-gray);
+            border: 1px solid rgba(10, 108, 255, 0.15);
+            padding: 8px 14px;
+            border-radius: var(--radius-md);
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: var(--text-sm);
+            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            transition: all var(--transition-fast);
         }
         
         .nav-btn:hover {
-            background: #333;
+            background-color: var(--primary-blue-ultralight);
+            color: var(--primary-blue);
+            border-color: var(--primary-blue-light);
+            transform: translateY(-1px);
         }
         
-        /* 目录侧边栏 - 点击展开 */
+        .dark-mode .nav-btn {
+            border-color: rgba(59, 130, 246, 0.2);
+            color: var(--neutral-gray);
+        }
+        
+        .dark-mode .nav-btn:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--primary-blue-light);
+        }
+        
+        .nav-btn.active {
+            background-color: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+        
+        .nav-btn.active:hover {
+            background-color: var(--primary-blue-dark);
+        }
+        
+        /* 移动端汉堡菜单按钮 */
+        .nav-hamburger {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--neutral-gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-md);
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-hamburger:hover {
+            background-color: var(--primary-blue-ultralight);
+            color: var(--primary-blue);
+        }
+        
+        /* ===== 目录侧边栏 ===== */
         #sidebar {
             position: fixed;
-            top: 60px;
-            left: -300px;
-            width: 280px;
-            height: calc(100vh - 60px);
-            background: white;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-            transition: left 0.3s ease;
+            top: 70px;
+            left: -320px;
+            width: 300px;
+            height: calc(100vh - 70px);
+            background-color: var(--neutral-white);
+            border-right: 1px solid rgba(10, 108, 255, 0.1);
+            box-shadow: var(--shadow-lg);
+            transition: left var(--transition-slow) cubic-bezier(0.22, 0.61, 0.36, 1);
             z-index: 999;
             overflow-y: auto;
-            padding: 20px;
+            padding: var(--space-lg);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .dark-mode #sidebar {
+            background-color: var(--neutral-white);
+            border-right-color: rgba(59, 130, 246, 0.1);
         }
         
         #sidebar.active {
             left: 0;
         }
         
+        .toc-header {
+            margin-bottom: var(--space-lg);
+            padding-bottom: var(--space-md);
+            border-bottom: 2px solid var(--primary-blue);
+        }
+        
         .toc-title {
-            font-size: 1.2em;
-            color: #333;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #555;
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--neutral-black);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
         }
         
-        .toc-list {
-            list-style: none;
+        .toc-stats {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-xs);
+            font-size: var(--text-sm);
+            color: var(--neutral-gray);
         }
         
-        .toc-item {
-            margin: 8px 0;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: all 0.2s;
-        }
-        
-        .toc-item:hover {
-            background: #f5f5f5;
-        }
-        
-        .toc-link {
-            color: #555;
-            text-decoration: none;
-            display: block;
-            font-size: 0.95em;
-        }
-        
-        .toc-link:hover {
-            color: #333;
+        .toc-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
         
         /* 搜索功能 */
-        #search-box {
-            margin-bottom: 20px;
+        .search-container {
+            margin-bottom: var(--space-lg);
+            position: relative;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neutral-gray);
+            pointer-events: none;
         }
         
         #search-input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.95em;
-            color: #333;
+            padding: 12px 16px 12px 42px;
+            border: 1px solid rgba(10, 108, 255, 0.2);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-base);
+            background-color: var(--neutral-light);
+            color: var(--neutral-dark);
+            transition: all var(--transition-fast);
         }
         
-        /* 主要内容区域 */
+        #search-input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(10, 108, 255, 0.1);
+            background-color: var(--neutral-white);
+        }
+        
+        .dark-mode #search-input {
+            background-color: rgba(30, 41, 59, 0.5);
+            border-color: rgba(59, 130, 246, 0.2);
+            color: var(--neutral-dark);
+        }
+        
+        /* 自动生成的目录 */
+        .toc-list {
+            list-style: none;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .toc-item {
+            margin: 4px 0;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-item:hover {
+            background-color: var(--primary-blue-ultralight);
+        }
+        
+        .dark-mode .toc-item:hover {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+        
+        .toc-link {
+            color: var(--neutral-dark);
+            text-decoration: none;
+            display: block;
+            font-size: var(--text-sm);
+            padding: 10px 12px;
+            border-left: 3px solid transparent;
+            transition: all var(--transition-fast);
+        }
+        
+        .toc-link:hover {
+            color: var(--primary-blue);
+            padding-left: 16px;
+        }
+        
+        .toc-link.active {
+            color: var(--primary-blue);
+            border-left-color: var(--primary-blue);
+            background-color: var(--primary-blue-ultralight);
+            font-weight: 600;
+        }
+        
+        .dark-mode .toc-link {
+            color: var(--neutral-dark);
+        }
+        
+        .dark-mode .toc-link.active {
+            background-color: rgba(59, 130, 246, 0.15);
+        }
+        
+        /* 目录层级缩进 */
+        .toc-item.h1 {
+            margin-left: 0;
+            font-weight: 600;
+        }
+        
+        .toc-item.h2 {
+            margin-left: 16px;
+            font-size: var(--text-sm);
+        }
+        
+        .toc-item.h3 {
+            margin-left: 32px;
+            font-size: var(--text-xs);
+            color: var(--neutral-gray);
+        }
+        
+        /* ===== 主要内容区域 ===== */
         #main-content {
-            max-width: 900px;
-            margin: 70px auto 40px;
-            padding: 30px;
-            background: white;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-            border-radius: 10px;
+            max-width: 1000px;
+            margin: 90px auto 60px;
+            padding: 0 var(--space-lg);
+            transition: all var(--transition-base);
         }
         
-        /* 章节标题 - 全部黑色，仅用大小、粗细和位置区分 */
+        .content-container {
+            background-color: var(--neutral-white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            padding: var(--space-2xl);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .content-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-purple));
+        }
+        
+        .dark-mode .content-container {
+            background-color: var(--neutral-white);
+        }
+        
+        /* 章节标题 - 科技感设计 */
         h1, h2, h3, h4 {
-            color: #333;
-            margin-top: 40px;
-            padding-top: 10px;
-            border-top: 1px solid #eee;
-            scroll-margin-top: 80px;
-            font-weight: bold;
+            color: var(--neutral-black);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-top: var(--space-2xl);
+            scroll-margin-top: 100px;
+            position: relative;
         }
         
         h1 {
-            font-size: 2em;
-            border-bottom: 3px solid #555;
-            padding-bottom: 15px;
+            font-size: var(--text-4xl);
+            line-height: 1.2;
             margin-top: 0;
-            border-top: none;
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid rgba(10, 108, 255, 0.1);
+            margin-bottom: var(--space-xl);
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-blue), transparent);
+            border-radius: var(--radius-full);
         }
         
         h2 {
-            font-size: 1.6em;
-            padding-left: 15px;
-            border-left: 4px solid #777;
-            border-top: none;
+            font-size: var(--text-3xl);
+            padding-left: var(--space-md);
+            border-left: 4px solid var(--primary-blue);
+            margin-top: var(--space-2xl);
         }
         
         h3 {
-            font-size: 1.3em;
-            background: #f9f9f9;
-            padding: 12px 15px;
-            border-radius: 5px;
-            border-top: none;
-            border-left: 3px solid #999;
+            font-size: var(--text-2xl);
+            padding: var(--space-xs) var(--space-md);
+            background: linear-gradient(90deg, rgba(10, 108, 255, 0.05), transparent);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-xl);
+        }
+        
+        h4 {
+            font-size: var(--text-xl);
+            color: var(--neutral-gray);
+            margin-top: var(--space-lg);
+            padding-bottom: var(--space-xs);
+            border-bottom: 1px dashed rgba(10, 108, 255, 0.1);
+        }
+        
+        .dark-mode h1, 
+        .dark-mode h2, 
+        .dark-mode h3, 
+        .dark-mode h4 {
+            color: var(--neutral-black);
         }
         
         /* 内容样式 */
         p {
-            margin: 15px 0;
+            margin: var(--space-md) 0;
+            color: var(--neutral-dark);
+            font-size: var(--text-base);
             text-align: justify;
-            color: #333;
+        }
+        
+        .dark-mode p {
+            color: var(--neutral-dark);
         }
         
         ul, ol {
-            margin: 15px 0 15px 25px;
+            margin: var(--space-md) 0 var(--space-md) var(--space-xl);
         }
         
         li {
-            margin: 8px 0;
-            color: #333;
+            margin: var(--space-sm) 0;
+            color: var(--neutral-dark);
+            position: relative;
+        }
+        
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-blue);
+            border-radius: 50%;
         }
         
         /* 高亮框 */
         .highlight-box, .tip-box, .warning-box {
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            border-left: 5px solid;
-            color: #333;
+            padding: var(--space-lg);
+            margin: var(--space-xl) 0;
+            border-radius: var(--radius-lg);
+            border-left: 4px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before, 
+        .tip-box::before, 
+        .warning-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: currentColor;
+            opacity: 0.03;
+            z-index: 0;
         }
         
         .highlight-box {
-            background: #f0f0f0;
-            border-left-color: #777;
+            border-left-color: var(--primary-blue);
+            color: var(--primary-blue);
         }
         
         .tip-box {
-            background: #f9f9f9;
-            border-left-color: #999;
+            border-left-color: var(--accent-green);
+            color: var(--accent-green);
         }
         
         .warning-box {
-            background: #f5f5f5;
-            border-left-color: #666;
+            border-left-color: var(--accent-orange);
+            color: var(--accent-orange);
+        }
+        
+        .box-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .box-title {
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
         }
         
         /* 表格 */
         table {
             width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 0.95em;
-            color: #333;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: var(--space-xl) 0;
+            font-size: var(--text-sm);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
         }
         
         th {
-            background: #555;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
             color: white;
-            padding: 12px 15px;
+            padding: var(--space-md);
             text-align: left;
+            font-weight: 600;
         }
         
         td {
-            padding: 10px 15px;
-            border: 1px solid #ddd;
+            padding: var(--space-md);
+            border-bottom: 1px solid rgba(10, 108, 255, 0.1);
+            background-color: var(--neutral-white);
+            color: var(--neutral-dark);
         }
         
-        tr:nth-child(even) {
-            background: #f9f9f9;
+        tr:last-child td {
+            border-bottom: none;
         }
         
-        /* 阅读进度条 */
+        tr:nth-child(even) td {
+            background-color: var(--neutral-light);
+        }
+        
+        .dark-mode tr:nth-child(even) td {
+            background-color: rgba(30, 41, 59, 0.3);
+        }
+        
+        /* ===== 阅读进度条 ===== */
         #progress-bar {
             position: fixed;
-            top: 60px;
+            top: 70px;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: #eee;
+            height: 4px;
+            background-color: rgba(10, 108, 255, 0.1);
             z-index: 998;
+            overflow: hidden;
         }
         
         #progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #666, #888);
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-purple));
             width: 0%;
-            transition: width 0.1s ease;
+            transition: width 0.2s ease;
+            position: relative;
         }
         
-        /* 返回顶部按钮 */
+        #progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: progressShimmer 2s infinite;
+        }
+        
+        @keyframes progressShimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* ===== 返回顶部按钮 ===== */
         #back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: #555;
+            bottom: var(--space-xl);
+            right: var(--space-xl);
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
             color: white;
             border: none;
-            border-radius: 50%;
+            border-radius: var(--radius-full);
             cursor: pointer;
             display: none;
             align-items: center;
             justify-content: center;
-            font-size: 1.2em;
-            box-shadow: 0 3px 15px rgba(85, 85, 85, 0.3);
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-lg);
             z-index: 997;
+            transition: all var(--transition-base);
         }
         
         #back-to-top:hover {
-            background: #333;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: var(--shadow-xl);
         }
         
-        /* 响应式设计 */
-        @media (max-width: 768px) {
+        /* ===== 响应式设计 ===== */
+        @media (max-width: 1200px) {
             #main-content {
-                padding: 20px;
-                margin: 70px 15px 40px;
+                max-width: 800px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            #main-content {
+                max-width: 100%;
+                padding: 0 var(--space-md);
+            }
+            
+            .content-container {
+                padding: var(--space-xl);
             }
             
             h1 {
-                font-size: 1.7em;
+                font-size: var(--text-3xl);
             }
             
             h2 {
-                font-size: 1.4em;
+                font-size: var(--text-2xl);
             }
             
             h3 {
-                font-size: 1.2em;
-            }
-            
-            #sidebar {
-                width: 85%;
-                left: -85%;
+                font-size: var(--text-xl);
             }
         }
         
-        /* 打印优化 */
+        @media (max-width: 768px) {
+            /* 移动端导航栏 */
+            .nav-container {
+                padding: 0 var(--space-md);
+            }
+            
+            .nav-title span {
+                display: none;
+            }
+            
+            .nav-hamburger {
+                display: flex;
+            }
+            
+            .nav-controls .nav-btn span {
+                display: none;
+            }
+            
+            .nav-controls .nav-btn {
+                padding: 8px 10px;
+            }
+            
+            .nav-btn .fa-text-height {
+                margin-right: 0;
+            }
+            
+            /* 移动端目录侧边栏 */
+            #sidebar {
+                width: 85%;
+                left: -85%;
+                top: 70px;
+                height: calc(100vh - 70px);
+            }
+            
+            /* 移动端内容 */
+            #main-content {
+                margin: 80px auto 40px;
+                padding: 0 var(--space-sm);
+            }
+            
+            .content-container {
+                padding: var(--space-lg);
+                border-radius: var(--radius-lg);
+            }
+            
+            h1 {
+                font-size: var(--text-2xl);
+                padding-bottom: var(--space-sm);
+                margin-bottom: var(--space-lg);
+            }
+            
+            h2 {
+                font-size: var(--text-xl);
+                padding-left: var(--space-sm);
+                margin-top: var(--space-xl);
+            }
+            
+            h3 {
+                font-size: var(--text-lg);
+                padding: var(--space-xs) var(--space-sm);
+                margin-top: var(--space-lg);
+            }
+            
+            p, li {
+                font-size: var(--text-base);
+            }
+            
+            /* 移动端表格 */
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            /* 移动端返回顶部按钮 */
+            #back-to-top {
+                bottom: var(--space-lg);
+                right: var(--space-lg);
+                width: 48px;
+                height: 48px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .content-container {
+                padding: var(--space-md);
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            h3 {
+                font-size: 1.25rem;
+            }
+            
+            .highlight-box, .tip-box, .warning-box {
+                padding: var(--space-md);
+            }
+            
+            #sidebar {
+                width: 90%;
+                left: -90%;
+                padding: var(--space-md);
+            }
+        }
+        
+        /* ===== 打印优化 ===== */
         @media print {
             #smart-nav, #sidebar, #back-to-top, #progress-bar {
                 display: none !important;
             }
             
             #main-content {
-                box-shadow: none;
                 margin: 0;
+                padding: 0;
+            }
+            
+            .content-container {
+                box-shadow: none;
                 padding: 0;
             }
             
@@ -335,17 +843,96 @@
             }
             
             h1 {
-                border-bottom-color: #000;
+                border-bottom: 2px solid #000;
             }
             
             h2 {
-                border-left-color: #555;
+                border-left: 3px solid #555;
             }
             
             h3 {
                 background: none;
-                border-left-color: #777;
+                border-left: 2px solid #777;
             }
+            
+            .highlight-box, .tip-box, .warning-box {
+                border: 1px solid #ddd;
+                break-inside: avoid;
+            }
+        }
+        
+        /* ===== 动画效果 ===== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* 章节内容动画延迟 */
+        .content-section {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        /* ===== 实用类 ===== */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            background-color: var(--primary-blue-ultralight);
+            color: var(--primary-blue);
+            margin-left: var(--space-xs);
+        }
+        
+        .dark-mode .badge {
+            background-color: rgba(59, 130, 246, 0.2);
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(10, 108, 255, 0.3), transparent);
+            margin: var(--space-2xl) 0;
+            border: none;
+        }
+        
+        /* 内容加载动画 */
+        .content-placeholder {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--neutral-light);
+        }
+        
+        .loader {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(10, 108, 255, 0.1);
+            border-top-color: var(--primary-blue);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -353,24 +940,39 @@
     <!-- 智能导航栏 -->
     <div id="smart-nav">
         <div class="nav-container">
-            <div class="nav-title">
-                <i class="fas fa-book"></i> 家庭成长陪伴手册（完整3.4万字版）
+            <div class="nav-logo">
+                <div class="nav-logo-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="nav-title">
+                    <span>家庭成长陪伴手册</span>
+                    <span class="badge">完整3.4万字版</span>
+                </div>
             </div>
+            
             <div class="nav-controls">
                 <button id="toc-toggle" class="nav-btn">
-                    <i class="fas fa-list"></i> 目录
+                    <i class="fas fa-list"></i>
+                    <span>目录</span>
                 </button>
                 <button id="font-increase" class="nav-btn">
-                    <i class="fas fa-text-height"></i> A+
+                    <i class="fas fa-text-height"></i>
+                    <span>A+</span>
                 </button>
                 <button id="font-decrease" class="nav-btn">
-                    <i class="fas fa-text-height"></i> A-
+                    <i class="fas fa-text-height"></i>
+                    <span>A-</span>
                 </button>
                 <button id="dark-mode" class="nav-btn">
-                    <i class="fas fa-moon"></i> 夜间
+                    <i class="fas fa-moon"></i>
+                    <span>夜间</span>
                 </button>
                 <button id="print-btn" class="nav-btn">
-                    <i class="fas fa-print"></i> 打印
+                    <i class="fas fa-print"></i>
+                    <span>打印</span>
+                </button>
+                <button class="nav-hamburger" id="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
@@ -383,13 +985,27 @@
     
     <!-- 目录侧边栏 -->
     <div id="sidebar">
-        <div class="toc-title">
-            <i class="fas fa-bookmark"></i> 章节导航
+        <div class="toc-header">
+            <div class="toc-title">
+                <i class="fas fa-bookmark"></i>
+                <span>章节导航</span>
+            </div>
+            <div class="toc-stats">
+                <div class="toc-stat">
+                    <i class="fas fa-file-alt"></i>
+                    <span id="chapter-count">0章</span>
+                </div>
+                <div class="toc-stat">
+                    <i class="fas fa-font"></i>
+                    <span>3.4万字</span>
+                </div>
+            </div>
         </div>
         
         <!-- 搜索框 -->
-        <div id="search-box">
-            <input type="text" id="search-input" placeholder="搜索关键词...">
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search-input" placeholder="搜索章节或关键词...">
         </div>
         
         <!-- 自动生成的目录 -->
@@ -400,6 +1016,44 @@
     
     <!-- 主要内容区域 -->
     <div id="main-content">
+        <div class="content-container fade-in">
+            <!-- 手册内容将在这里动态生成 -->
+            <div id="handbook-content">
+                <!-- 内容将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- JavaScript功能 -->
+    <script>
+        // 等待页面加载完成
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 模拟加载过程
+            const handbookContent = document.getElementById('handbook-content');
+            const contentPlaceholder = document.createElement('div');
+            contentPlaceholder.className = 'content-placeholder';
+            contentPlaceholder.innerHTML = '<div class="loader"></div>';
+            
+            handbookContent.parentNode.insertBefore(contentPlaceholder, handbookContent);
+            handbookContent.style.display = 'none';
+            
+            // 模拟加载延迟
+            setTimeout(() => {
+                contentPlaceholder.remove();
+                handbookContent.style.display = 'block';
+                loadHandbookContent();
+                initializePage();
+            }, 800);
+            
+            // 加载手册内容
+            function loadHandbookContent() {
+                const content = `
 <!doctype html>
 <html>
 <head>
@@ -1037,302 +1691,360 @@ header, .context-menu, .megamenu-content, footer{
 <strong><span>一句话原因：</span></strong><span> “因为今天 </span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><span>_。”</span></p><p><strong><span>第一部分：流程执行检核 (打勾√即成功，重在完成，不在完美)</span></strong></p><ul><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>晨间自查清单成功使用。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>课间发现/想起了家长的“能量补给贴”。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>晚餐时进行了“每日三问”深度聊天。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>参与了晚间家庭探索活动（□A.文言侦探 □B.财务官 □C.英文档案 □D.家史探源 □E.睡眠科学）。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>睡前分享了“三件好事”。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><span>在21:20前熄灯进入睡前程序。</span></p></li></ul><p><strong><span>第二部分：亮点发现与微观记录</span></strong></p><ol start='' ><li><p><strong><span>今日之“最”</span></strong><span>：</span></p><ul><li><p><span>最让我嘴角上扬的瞬间：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>_</span></strong></p></li><li><p><span>最新奇/有趣的观察（关于人、事、物）：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>_</span></strong></p></li><li><p><span>一个小小的、我面对了的挑战：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><span>_</span></p></li><li><p><span>我对自己感到满意的一个小行动：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>_</span></strong></p></li></ul></li><li><p><strong><span>家庭探索日志</span></strong><span>（若参与）：</span></p><ul><li><p><span>活动名称：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><span>___</span></p></li><li><p><span>我的角色/感受：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong></p></li><li><p><span>一个关键发现或启发：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><span>___</span></p></li><li><p><span>趣味度评级：☆☆☆☆☆ (圈出相应星星)</span></p></li></ul></li></ol><p><strong><span>第三部分：睡前三件好事 (感恩练习)</span></strong></p><ol start='' ><li><hr /></li><li><hr /></li><li><hr /></li></ol><p><strong><span>第四部分：明日预览 (周二，9月2日)</span></strong></p><ul><li><p><span>特殊课表/需准备物品：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>_</span></strong></p></li><li><p><span>我的一个小小期待（非学业）：</span><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><span>___</span></p></li></ul><p><strong><span>第五部分：自由心语区</span></strong></p><ul><li><p><strong><span>家长想对孩子说：</span></strong></p><hr /><hr /></li><li><p><strong><span>孩子想对家长/对自己说：</span></strong></p><hr /><hr /></li></ul><h3 id='工具三家庭年度资源投资评估雷达图-第一日启动感知版'><strong><span>工具三：家庭年度资源投资评估雷达图 (第一日启动感知版)</span></strong></h3><p><strong><span>&amp; 日度成长对标与明日优化单</span></strong></p><p><em><span>(本工具用于直观感知成长资源的分布，是家庭对话的起点、觉察的工具，而非考核表)</span></em></p><p><strong><span>使用说明</span></strong><span>：请家长与孩子一起，根据今天的经历和感受，为每个维度的“启动情况”进行粗略的感知评分（1-5分）。1分=几乎未涉及，5分=感觉做得很好。连接各点，形成我们第一天的“资源投入初貌图”。然后，回顾今天对标的核心能力点，并思考明日可以优化的一个微小行动。</span></p><p><strong><span>【A部分：资源投入感知雷达图】</span></strong></p><ol start='' ><li><p><strong><span>学业知识体系发展</span></strong><span> (今日涉及：文言文精读启动、数学建模启蒙)</span></p><ul><li><p><span>感知评分：</span><strong></strong><span>分</span></p></li><li><p><span>今日印记：启动了“学科知识生活化”的初体验。</span></p></li></ul></li><li><p><strong><span>核心素养与通用能力</span></strong><span> (今日涉及：计划执行、深度沟通、反思复盘)</span></p><ul><li><p><span>感知评分：</span><strong></strong><span>分</span></p></li><li><p><span>今日印记：练习了自我管理流程和结构化沟通思维。</span></p></li></ul></li><li><p><strong><span>身心健康与生活习惯</span></strong><span> (今日涉及：睡眠仪式、情绪交流、规律作息)</span></p><ul><li><p><span>感知评分：</span><strong></strong><span>分</span></p></li><li><p><span>今日印记：强调了睡眠健康底线，进行了情绪识别与分享。</span></p></li></ul></li><li><p><strong><span>家庭关系与社会连接</span></strong><span> (今日涉及：深度亲子交流、协作家庭活动)</span></p><ul><li><p><span>感知评分：</span><strong></strong><span>分</span></p></li><li><p><span>今日印记：通过多种活动强化了亲子情感联结。</span></p></li></ul></li><li><p><strong><span>媒介素养与信息环境</span></strong><span> (今日涉及：屏幕时间管理、工具性使用网络查资料)</span></p><ul><li><p><span>感知评分：</span><strong></strong><span>分</span></p></li><li><p><span>今日印记：有意识地管理了娱乐屏幕时间，将数字工具作为学习辅助。</span></p></li></ul></li><li><p><strong><span>财商素养与消费实践</span></strong><span> (今日涉及：家庭账本启蒙、收支概念)</span></p><ul><li><p><span>感知评分：</span><strong></strong><span>分</span></p></li><li><p><span>今日印记：初次接触收入、支出、预算等基础财经概念。</span></p></li></ul></li><li><p><strong><span>跨学科综合实践</span></strong><span> (今日涉及：语文-历史、数学-生活结合的项目)</span></p><ul><li><p><span>感知评分：</span><strong></strong><span>分</span></p></li><li><p><span>今日印记：体验了学科知识在真实情境中的应用与整合。</span></p></li></ul></li></ol><p><strong><span>(将七个分数点连接起来，形成“资源投入初貌图”。告诉孩子：这只是我们漫长成长地图的第一个坐标点。未来我们会一起努力，通过有意识的选择和行动，让这个图形变得更丰满、更均衡。这张图无关好坏，只关乎我们共同的觉察、欣赏与规划。)</span></strong></p><p><strong><span>【B部分：日度核心能力对标与明日优化点】</span></strong></p><ul><li><p><strong><span>回顾今日，我们重点实践了哪些能力？</span></strong><span> (对应《知识点指标》)</span></p><ul><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><strong><span>项目3/4</span></strong><span>：学习环境与作业流程的自我管理启动。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><strong><span>项目6/12</span></strong><span>：结构化亲子沟通与非暴力倾听。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><strong><span>项目21/41</span></strong><span>：学科知识生活化建模启蒙。</span></p></li><li class='md-task-list-item task-list-item task-list-not-done' ><input type='checkbox' /><p><strong><span>项目10/20</span></strong><span>：健康作息与数字设备公约实践。</span></p></li></ul></li><li><p><strong><span>明日（周二），我们可以在哪个小细节上做得更好一点？</span></strong><span> (家庭共同商定1项)</span></p><ul><li><p><span>例如：“明天早餐时，我们尝试完全安静地享受食物1分钟。”</span></p></li><li><p><span>例如：“明天晚收时，我尝试自己根据课表准备，完全不提问。”</span></p></li><li><p><span>例如：“明天‘三件好事’分享，我们都说一件关于‘发现’的好事。”</span></p></li><li><p><span>我们的明日优化点：</span><strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><strong><span>__</span></strong><span>_</span></strong></p></li></ul></li></ul><hr /><h2 id='第五章给家长的特别提示-第一日终极心法'><strong><span>第五章：给家长的特别提示 (第一日终极心法)</span></strong></h2><p><span>亲爱的家长，当您带领家庭实践完这充实、细致却又充满弹性的一天，请务必收下这些比任何具体操作步骤都更为根本的原则。它们是您在未来漫长而美妙的陪伴岁月中，需要时常回归、反复校准的 </span><strong><span>“定海神针”</span></strong><span> 与 </span><strong><span>“心灵导航仪”</span></strong><span> ：</span></p><ol start='' ><li><p><strong><span>终极成功指标序列：关系 &gt; 习惯 &gt; 知识。</span></strong></p><ul><li><p><span>请务必按此顺序评估今日的成功：第一，也是最重要的，亲子间是否感到更亲密、更信任、连接更牢固？第二，孩子是否对1-2个新流程（如清单、三问）有了初步的接纳和一次成功的体验？第三，在活动中是否有一丝“原来如此”的启发或纯粹的乐趣？</span><strong><span>只要第一项成立，今天就是百分百、毫无疑义的成功。</span></strong><span> 牢固、安全、充满信任的情感关系，是所有有效教育发生的唯一土壤和前提。没有关系，就没有教育。</span></p></li></ul></li><li><p><strong><span>管理您的“预期焦虑”，扮演“定海神针”。</span></strong></p><ul><li><p><span>您对孩子可能听不懂、跟不上、不适应、交不到朋友的一切内心担忧、想象和过高期待，请诚实写在一张纸上，然后郑重地锁进抽屉。今天，您最重要、最核心的任务是通过您的从容、稳定、微笑和全身心的在场，向孩子传递一个压倒性的核心信念：“初中是人生一段值得期待、充满发现的冒险，我们可以一起探索、一起学习，没什么大不了。” 您的情绪稳定，是孩子勇气与信心的第一来源，也是最强大、最直接的安全感。</span></p></li></ul></li><li><p><strong><span>深刻理解并全然接纳“一切反应皆正常”。</span></strong></p><ul><li><p><span>如果孩子对您的所有问题都回答“还行”、“不知道”、“忘了”，甚至表现出烦躁、沉默或抗拒，请不要失望，更不要逼问、指责或感到挫败。这可能是他信息过载后的正常心理防御，是青春期身心巨变中常见的情绪波动，或是其独立意识萌芽时朦胧的自我界限表现。您可以微笑着回应：“好的，看来第一天信息量很大，需要时间消化。你的感受通道随时可以关闭或打开，我永远在接收站这边。” 然后，自然地转移话题。</span><strong><span>无条件的接纳，是最好的共情，也是关系深化的唯一路径。</span></strong></p></li></ul></li><li><p><strong><span>扮演“人类学家”与“记录员”，而非“评判官”与“纠错师”。</span></strong></p><ul><li><p><span>今天，请带着纯粹好奇、欣赏而非批判、挑剔的眼光观察孩子。记录客观现象（“他核对课本时反复看了三次课表，很仔细”），而非急于下主观结论（“他太马虎了，连课表都记不住”）。前者导向支持性策略（“我们今晚可以把课表贴在更显眼的地方，或者做一个课程卡片”），后者只会引发亲子冲突和孩子的挫败感、羞耻感，紧紧关闭沟通与成长的大门。</span></p></li></ul></li><li><p><strong><span>牢固定位：家庭是“战略后方”与“心理加油站”，不是“第二前线”或“补习班”。</span></strong></p><ul><li><p><span>请通过您今晚所有的言行，反复向孩子确认并强化：“家，是一个你可以卸下所有铠甲、展露所有疲惫、犯错、脆弱和最真实自己的地方。外面的世界（学校）需要你遵守规则、付出努力、展现能力、管理形象。但回到家，你只需要‘存在’，就会被完全地接纳、尊重和爱护。” 这个清晰、坚定的定位，是孩子在未来六年乃至一生中应对一切压力、挑战与风雨的心理基石和力量源泉。</span></p></li></ul></li><li><p><strong><span>保持灵活弹性，坚守健康底线。</span></strong></p><ul><li><p><span>本手册所有详尽安排均为建议、资源库和可能性地图，而非必须严格遵守的军事命令。如果孩子今天异常疲惫、情绪低落或家庭有突发状况，您可以毫不犹豫地跳过所有学习拓展活动，只保留最核心的晚餐情感交流和睡前宁静仪式。但请记住，</span><strong><span>睡眠时间（21:30熄灯）是不可妥协的生理底线</span></strong><span>。它直接关系到孩子明天的学习状态、长期的身高与大脑发育、免疫系统和情绪健康，其重要性远超任何一科作业、一次预习或一个拓展活动。</span><strong><span>为健康让路，是最高明的养育智慧。</span></strong></p></li></ul></li><li><p><strong><span>请您，务必关照好自己。</span></strong></p><ul><li><p><span>您正在阅读、理解并尝试实践这份极其详尽的手册，这本身就证明了您是一位极其负责、充满智慧、深具爱心且愿意终身成长的家长。陪伴青春期的孩子，是一项对心力、智慧、耐心要求极高的美好而复杂的工作。请记得，在关爱孩子、建设家庭的同时，也要慈悲地照顾好自己的情绪、精力和需求。您的内心稳定、充满爱意、自我充盈的存在状态，就是给孩子最好的第一天，以及未来每一天的礼物。</span><strong><span>照顾好自己，才能可持续地、以丰盈的状态照顾好家人。</span></strong></p></li></ul></li></ol><p><strong><span>今日成长密钥：稳定胜过急切，联结先于教导，体验重于结果，过程即是奖赏。让爱，在每一个看似平凡、琐碎的日常时刻里，静静流淌，默默积累，最终汇聚成支撑孩子奔赴广阔远方、探索无限可能的深沉、坚定而温柔的力量。</span></strong></p><p><strong><span>(本日手册内容圆满结束。请家长带着爱、耐心、智慧与灵活性，与孩子共同创造属于你们的第一天珍贵记忆。明天，我们将在此基础上，进行巩固、微调、延伸与深化。)</span></strong></p><p>&nbsp;</p></div></div>
 </body>
 </html>
-        
-    </div>
-    
-    <!-- 返回顶部按钮 -->
-    <button id="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-    
-    <!-- JavaScript功能 -->
-    <script>
-        // 等待页面加载完成
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // 1. 目录展开/收起
-            document.getElementById('toc-toggle').addEventListener('click', function() {
-                document.getElementById('sidebar').classList.toggle('active');
-            });
-            
-            // 2. 字体大小调整
-            let fontSize = 16;
-            const content = document.getElementById('main-content');
-            
-            document.getElementById('font-increase').addEventListener('click', function() {
-                if (fontSize < 22) {
-                    fontSize += 1;
-                    content.style.fontSize = fontSize + 'px';
-                }
-            });
-            
-            document.getElementById('font-decrease').addEventListener('click', function() {
-                if (fontSize > 14) {
-                    fontSize -= 1;
-                    content.style.fontSize = fontSize + 'px';
-                }
-            });
-            
-            // 3. 暗黑模式切换
-            document.getElementById('dark-mode').addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                if (document.body.classList.contains('dark-mode')) {
-                    // 夜间模式：深色背景，浅色文字
-                    document.body.style.backgroundColor = '#1a1a1a';
-                    document.body.style.color = '#e0e0e0';
-                    content.style.backgroundColor = '#2d2d2d';
-                    content.style.color = '#e0e0e0';
-                    
-                    // 标题颜色
-                    const headings = content.querySelectorAll('h1, h2, h3');
-                    headings.forEach(heading => {
-                        heading.style.color = '#e0e0e0';
-                    });
-                    
-                    // 段落颜色
-                    const paragraphs = content.querySelectorAll('p, li');
-                    paragraphs.forEach(p => {
-                        p.style.color = '#e0e0e0';
-                    });
-                    
-                    this.innerHTML = '<i class="fas fa-sun"></i> 日间';
-                } else {
-                    // 日间模式：恢复黑色主题
-                    document.body.style.backgroundColor = '#f8f9fa';
-                    document.body.style.color = '#333';
-                    content.style.backgroundColor = 'white';
-                    content.style.color = '#333';
-                    
-                    // 恢复标题颜色
-                    const headings = content.querySelectorAll('h1, h2, h3');
-                    headings.forEach(heading => {
-                        heading.style.color = '#333';
-                    });
-                    
-                    // 恢复段落颜色
-                    const paragraphs = content.querySelectorAll('p, li');
-                    paragraphs.forEach(p => {
-                        p.style.color = '#333';
-                    });
-                    
-                    this.innerHTML = '<i class="fas fa-moon"></i> 夜间';
-                }
-            });
-            
-            // 4. 打印功能
-            document.getElementById('print-btn').addEventListener('click', function() {
-                window.print();
-            });
-            
-            // 5. 增强版自动生成目录
-            function generateTOC() {
-                const tocContainer = document.getElementById('toc-container');
+                    </div>
+                `;
                 
-                // 清空现有目录
-                tocContainer.innerHTML = '';
+                handbookContent.innerHTML = content;
                 
-                // 获取内容区域的所有标题
+                // 为所有内容区域添加动画类
+                const sections = handbookContent.querySelectorAll('.content-section');
+                sections.forEach((section, index) => {
+                    section.style.animationDelay = `${index * 0.1}s`;
+                });
+            }
+            
+            // 初始化所有页面功能
+            function initializePage() {
+                // 1. 目录展开/收起
+                const tocToggle = document.getElementById('toc-toggle');
+                const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+                const sidebar = document.getElementById('sidebar');
+                
+                function toggleSidebar() {
+                    sidebar.classList.toggle('active');
+                }
+                
+                if (tocToggle) tocToggle.addEventListener('click', toggleSidebar);
+                if (mobileMenuToggle) mobileMenuToggle.addEventListener('click', toggleSidebar);
+                
+                // 2. 字体大小调整
+                let fontSize = 16;
                 const content = document.getElementById('main-content');
-                const headings = content.querySelectorAll('h1, h2, h3');
                 
-                if (headings.length === 0) {
-                    const noContentMsg = document.createElement('li');
-                    noContentMsg.className = 'toc-item';
-                    noContentMsg.innerHTML = '<span style="color:#999;font-style:italic;">未检测到章节标题</span>';
-                    tocContainer.appendChild(noContentMsg);
-                    return;
+                document.getElementById('font-increase').addEventListener('click', function() {
+                    if (fontSize < 22) {
+                        fontSize += 1;
+                        content.style.fontSize = fontSize + 'px';
+                        localStorage.setItem('handbook-font-size', fontSize);
+                    }
+                });
+                
+                document.getElementById('font-decrease').addEventListener('click', function() {
+                    if (fontSize > 14) {
+                        fontSize -= 1;
+                        content.style.fontSize = fontSize + 'px';
+                        localStorage.setItem('handbook-font-size', fontSize);
+                    }
+                });
+                
+                // 恢复保存的字体大小
+                const savedFontSize = localStorage.getItem('handbook-font-size');
+                if (savedFontSize) {
+                    fontSize = parseInt(savedFontSize);
+                    content.style.fontSize = fontSize + 'px';
                 }
                 
-                let tocItems = [];
+                // 3. 暗黑模式切换
+                const darkModeToggle = document.getElementById('dark-mode');
+                const isDarkMode = localStorage.getItem('handbook-dark-mode') === 'true';
                 
-                headings.forEach((heading, index) => {
-                    // 为每个标题添加ID（如果还没有）
-                    if (!heading.id) {
-                        heading.id = 'section-' + index;
+                if (isDarkMode) {
+                    document.body.classList.add('dark-mode');
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i><span>日间</span>';
+                }
+                
+                darkModeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    const isNowDark = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('handbook-dark-mode', isNowDark);
+                    
+                    if (isNowDark) {
+                        this.innerHTML = '<i class="fas fa-sun"></i><span>日间</span>';
+                    } else {
+                        this.innerHTML = '<i class="fas fa-moon"></i><span>夜间</span>';
+                    }
+                });
+                
+                // 4. 打印功能
+                document.getElementById('print-btn').addEventListener('click', function() {
+                    window.print();
+                });
+                
+                // 5. 增强版自动生成目录
+                function generateTOC() {
+                    const tocContainer = document.getElementById('toc-container');
+                    const chapterCountElement = document.getElementById('chapter-count');
+                    
+                    // 清空现有目录
+                    tocContainer.innerHTML = '';
+                    
+                    // 获取内容区域的所有标题
+                    const content = document.getElementById('handbook-content');
+                    const headings = content.querySelectorAll('h1, h2, h3');
+                    
+                    if (headings.length === 0) {
+                        const noContentMsg = document.createElement('li');
+                        noContentMsg.className = 'toc-item';
+                        noContentMsg.innerHTML = '<span style="color:#999;font-style:italic;">未检测到章节标题</span>';
+                        tocContainer.appendChild(noContentMsg);
+                        chapterCountElement.textContent = '0章';
+                        return;
                     }
                     
-                    // 获取标题文本
-                    let titleText = heading.textContent || heading.innerText;
+                    let tocItems = [];
                     
-                    // 创建目录项
-                    const listItem = document.createElement('li');
-                    listItem.className = 'toc-item';
-                    
-                    const link = document.createElement('a');
-                    link.href = '#' + heading.id;
-                    link.className = 'toc-link';
-                    
-                    // 根据标题级别添加缩进
-                    const tagName = heading.tagName.toLowerCase();
-                    let indent = '0px';
-                    if (tagName === 'h2') indent = '20px';
-                    if (tagName === 'h3') indent = '40px';
-                    
-                    link.style.paddingLeft = indent;
-                    link.textContent = titleText;
-                    
-                    // 添加点击事件
-                    link.addEventListener('click', function(e) {
-                        e.preventDefault();
+                    headings.forEach((heading, index) => {
+                        // 为每个标题添加ID（如果还没有）
+                        if (!heading.id) {
+                            heading.id = 'section-' + index;
+                        }
                         
-                        // 确保目标元素存在
-                        const target = document.getElementById(heading.id);
-                        if (target) {
-                            // 平滑滚动到目标位置
-                            target.scrollIntoView({ 
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
+                        // 获取标题文本
+                        let titleText = heading.textContent || heading.innerText;
+                        
+                        // 创建目录项
+                        const listItem = document.createElement('li');
+                        listItem.className = `toc-item ${heading.tagName.toLowerCase()}`;
+                        
+                        const link = document.createElement('a');
+                        link.href = '#' + heading.id;
+                        link.className = 'toc-link';
+                        link.textContent = titleText;
+                        
+                        // 添加点击事件
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
                             
-                            // 点击后关闭目录（在移动端尤其有用）
-                            if (window.innerWidth <= 768) {
-                                document.getElementById('sidebar').classList.remove('active');
+                            // 确保目标元素存在
+                            const target = document.getElementById(heading.id);
+                            if (target) {
+                                // 平滑滚动到目标位置
+                                target.scrollIntoView({ 
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                                
+                                // 高亮当前章节
+                                document.querySelectorAll('.toc-link').forEach(link => {
+                                    link.classList.remove('active');
+                                });
+                                this.classList.add('active');
+                                
+                                // 点击后关闭目录（在移动端尤其有用）
+                                if (window.innerWidth <= 768) {
+                                    sidebar.classList.remove('active');
+                                }
                             }
+                        });
+                        
+                        listItem.appendChild(link);
+                        tocItems.push(listItem);
+                    });
+                    
+                    // 将目录项添加到容器中
+                    tocItems.forEach(item => {
+                        tocContainer.appendChild(item);
+                    });
+                    
+                    // 更新目录计数
+                    if (chapterCountElement && headings.length > 0) {
+                        chapterCountElement.textContent = `${headings.length}章`;
+                    }
+                    
+                    // 默认高亮第一个章节
+                    if (tocItems.length > 0) {
+                        const firstLink = tocItems[0].querySelector('.toc-link');
+                        if (firstLink) firstLink.classList.add('active');
+                    }
+                }
+                
+                // 6. 增强版搜索功能
+                document.getElementById('search-input').addEventListener('input', function() {
+                    const searchTerm = this.value.trim().toLowerCase();
+                    const tocItems = document.querySelectorAll('.toc-item');
+                    
+                    // 先移除可能存在的"无结果"提示
+                    const existingNoResults = document.querySelector('.no-results');
+                    if (existingNoResults) {
+                        existingNoResults.remove();
+                    }
+                    
+                    if (!searchTerm) {
+                        // 如果没有搜索词，显示所有目录项
+                        tocItems.forEach(item => {
+                            item.style.display = 'flex';
+                        });
+                        return;
+                    }
+                    
+                    let foundCount = 0;
+                    
+                    // 显示匹配的目录项，隐藏不匹配的
+                    tocItems.forEach(item => {
+                        const link = item.querySelector('a');
+                        if (link && link.textContent.toLowerCase().includes(searchTerm)) {
+                            item.style.display = 'flex';
+                            foundCount++;
+                            
+                            // 高亮搜索关键词
+                            const originalText = link.textContent;
+                            const lowerText = originalText.toLowerCase();
+                            const index = lowerText.indexOf(searchTerm);
+                            
+                            if (index >= 0) {
+                                const before = originalText.substring(0, index);
+                                const match = originalText.substring(index, index + searchTerm.length);
+                                const after = originalText.substring(index + searchTerm.length);
+                                link.innerHTML = `${before}<strong style="color:var(--primary-blue);">${match}</strong>${after}`;
+                            }
+                        } else {
+                            item.style.display = 'none';
                         }
                     });
                     
-                    listItem.appendChild(link);
-                    tocItems.push(listItem);
-                });
-                
-                // 将目录项添加到容器中
-                tocItems.forEach(item => {
-                    tocContainer.appendChild(item);
-                });
-                
-                // 更新目录计数
-                const tocTitle = document.querySelector('.toc-title');
-                if (tocTitle && headings.length > 0) {
-                    tocTitle.innerHTML = `<i class="fas fa-bookmark"></i> 章节导航 (${headings.length}章)`;
-                }
-            }
-            
-            // 6. 增强版搜索功能
-            document.getElementById('search-input').addEventListener('input', function() {
-                const searchTerm = this.value.trim().toLowerCase();
-                const tocItems = document.querySelectorAll('.toc-item');
-                
-                // 先移除可能存在的"无结果"提示
-                const existingNoResults = document.querySelector('.no-results');
-                if (existingNoResults) {
-                    existingNoResults.remove();
-                }
-                
-                if (!searchTerm) {
-                    // 如果没有搜索词，显示所有目录项
-                    tocItems.forEach(item => {
-                        item.style.display = 'flex';
-                    });
-                    return;
-                }
-                
-                let foundCount = 0;
-                
-                // 显示匹配的目录项，隐藏不匹配的
-                tocItems.forEach(item => {
-                    const link = item.querySelector('a');
-                    if (link && link.textContent.toLowerCase().includes(searchTerm)) {
-                        item.style.display = 'flex';
-                        foundCount++;
-                    } else {
-                        item.style.display = 'none';
+                    // 如果没有匹配项，显示提示
+                    if (foundCount === 0) {
+                        const noResults = document.createElement('li');
+                        noResults.className = 'toc-item no-results';
+                        noResults.innerHTML = `<span style="color:#999;font-style:italic;">未找到包含"${searchTerm}"的章节</span>`;
+                        noResults.style.display = 'flex';
+                        
+                        const tocContainer = document.getElementById('toc-container');
+                        tocContainer.appendChild(noResults);
                     }
                 });
                 
-                // 如果没有匹配项，显示提示
-                if (foundCount === 0) {
-                    const noResults = document.createElement('li');
-                    noResults.className = 'toc-item no-results';
-                    noResults.innerHTML = `<span style="color:#999;font-style:italic;">未找到包含"${searchTerm}"的章节</span>`;
-                    noResults.style.display = 'flex';
+                // 7. 阅读进度条
+                function updateProgressBar() {
+                    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                     
-                    const tocContainer = document.getElementById('toc-container');
-                    tocContainer.appendChild(noResults);
+                    if (height > 0) {
+                        const scrolled = (winScroll / height) * 100;
+                        document.getElementById('progress-fill').style.width = scrolled + '%';
+                    }
                 }
-            });
-            
-            // 7. 阅读进度条
-            function updateProgressBar() {
-                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 
-                if (height > 0) {
-                    const scrolled = (winScroll / height) * 100;
-                    document.getElementById('progress-fill').style.width = scrolled + '%';
+                // 8. 返回顶部按钮
+                const backToTopBtn = document.getElementById('back-to-top');
+                
+                function updateBackToTopButton() {
+                    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                        backToTopBtn.style.display = 'flex';
+                    } else {
+                        backToTopBtn.style.display = 'none';
+                    }
                 }
-            }
-            
-            // 8. 返回顶部按钮
-            const backToTopBtn = document.getElementById('back-to-top');
-            
-            function updateBackToTopButton() {
-                if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-                    backToTopBtn.style.display = 'flex';
-                } else {
-                    backToTopBtn.style.display = 'none';
-                }
-            }
-            
-            backToTopBtn.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
+                
+                backToTopBtn.addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
-            });
-            
-            // 9. 关闭目录（点击外部）
-            document.addEventListener('click', function(event) {
-                const sidebar = document.getElementById('sidebar');
-                const toggleBtn = document.getElementById('toc-toggle');
                 
-                if (sidebar && sidebar.classList.contains('active') && 
-                    !sidebar.contains(event.target) && 
-                    !toggleBtn.contains(event.target)) {
-                    sidebar.classList.remove('active');
-                }
-            });
-            
-            // 10. 智能处理URL锚点
-            function handleAnchorLinks() {
-                // 检查URL中是否有锚点
-                const hash = window.location.hash;
-                if (hash) {
-                    const targetElement = document.querySelector(hash);
-                    if (targetElement) {
-                        // 等待页面完全加载后滚动到锚点
-                        setTimeout(() => {
-                            targetElement.scrollIntoView({ 
-                                behavior: 'smooth',
-                                block: 'start'
-                            });
-                        }, 100);
+                // 9. 章节高亮与滚动监听
+                function updateActiveSection() {
+                    const headings = document.querySelectorAll('#handbook-content h1, #handbook-content h2, #handbook-content h3');
+                    const tocLinks = document.querySelectorAll('.toc-link');
+                    
+                    let currentSectionId = '';
+                    
+                    // 找到当前视口中的第一个标题
+                    for (let i = headings.length - 1; i >= 0; i--) {
+                        const heading = headings[i];
+                        const rect = heading.getBoundingClientRect();
+                        
+                        if (rect.top <= 150) {
+                            currentSectionId = heading.id;
+                            break;
+                        }
                     }
-                }
-            }
-            
-            // 11. 添加键盘快捷键
-            document.addEventListener('keydown', function(e) {
-                // Ctrl/Cmd + F 聚焦搜索框
-                if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-                    e.preventDefault();
-                    const searchInput = document.getElementById('search-input');
-                    if (searchInput) {
-                        searchInput.focus();
-                        searchInput.select();
-                    }
+                    
+                    // 移除所有高亮，为当前章节添加高亮
+                    tocLinks.forEach(link => {
+                        link.classList.remove('active');
+                        
+                        if (link.getAttribute('href') === `#${currentSectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
                 }
                 
-                // ESC 关闭目录
-                if (e.key === 'Escape') {
+                // 10. 关闭目录（点击外部）
+                document.addEventListener('click', function(event) {
                     const sidebar = document.getElementById('sidebar');
-                    if (sidebar && sidebar.classList.contains('active')) {
+                    const toggleBtn = document.getElementById('toc-toggle');
+                    const mobileToggle = document.getElementById('mobile-menu-toggle');
+                    
+                    if (sidebar && sidebar.classList.contains('active') && 
+                        !sidebar.contains(event.target) && 
+                        !toggleBtn.contains(event.target) &&
+                        !mobileToggle.contains(event.target)) {
                         sidebar.classList.remove('active');
                     }
+                });
+                
+                // 11. 智能处理URL锚点
+                function handleAnchorLinks() {
+                    // 检查URL中是否有锚点
+                    const hash = window.location.hash;
+                    if (hash) {
+                        const targetElement = document.querySelector(hash);
+                        if (targetElement) {
+                            // 等待页面完全加载后滚动到锚点
+                            setTimeout(() => {
+                                targetElement.scrollIntoView({ 
+                                    behavior: 'smooth',
+                                    block: 'start'
+                                });
+                                
+                                // 高亮对应的目录项
+                                const tocLink = document.querySelector(`.toc-link[href="${hash}"]`);
+                                if (tocLink) {
+                                    document.querySelectorAll('.toc-link').forEach(link => {
+                                        link.classList.remove('active');
+                                    });
+                                    tocLink.classList.add('active');
+                                }
+                            }, 300);
+                        }
+                    }
                 }
-            });
-            
-            // 初始化所有功能
-            function initializePage() {
+                
+                // 12. 添加键盘快捷键
+                document.addEventListener('keydown', function(e) {
+                    // Ctrl/Cmd + F 聚焦搜索框
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                        e.preventDefault();
+                        const searchInput = document.getElementById('search-input');
+                        if (searchInput) {
+                            searchInput.focus();
+                            searchInput.select();
+                        }
+                    }
+                    
+                    // ESC 关闭目录
+                    if (e.key === 'Escape') {
+                        const sidebar = document.getElementById('sidebar');
+                        if (sidebar && sidebar.classList.contains('active')) {
+                            sidebar.classList.remove('active');
+                        }
+                    }
+                    
+                    // Ctrl/Cmd + + 增大字体
+                    if ((e.ctrlKey || e.metaKey) && (e.key === '+' || e.key === '=')) {
+                        e.preventDefault();
+                        document.getElementById('font-increase').click();
+                    }
+                    
+                    // Ctrl/Cmd + - 减小字体
+                    if ((e.ctrlKey || e.metaKey) && e.key === '-') {
+                        e.preventDefault();
+                        document.getElementById('font-decrease').click();
+                    }
+                });
+                
                 // 生成目录
                 generateTOC();
                 
@@ -1343,17 +2055,15 @@ header, .context-menu, .megamenu-content, footer{
                 window.addEventListener('scroll', function() {
                     updateProgressBar();
                     updateBackToTopButton();
+                    updateActiveSection();
                 });
                 
                 // 初始检查返回顶部按钮
                 updateBackToTopButton();
                 
                 console.log('家庭成长陪伴手册已加载完成，共检测到章节标题：', 
-                    document.querySelectorAll('#main-content h1, #main-content h2, #main-content h3').length);
+                    document.querySelectorAll('#handbook-content h1, #handbook-content h2, #handbook-content h3').length);
             }
-            
-            // 启动页面初始化
-            initializePage();
         });
     </script>
 </body>
