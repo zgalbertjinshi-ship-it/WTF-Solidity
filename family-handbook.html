@@ -43,7 +43,7 @@
         
         .nav-title {
             font-size: 1.1em;
-            color: #2c3e50;
+            color: #333;
             font-weight: 600;
         }
         
@@ -53,7 +53,7 @@
         }
         
         .nav-btn {
-            background: #3498db;
+            background: #555;
             color: white;
             border: none;
             padding: 8px 15px;
@@ -66,7 +66,7 @@
         }
         
         .nav-btn:hover {
-            background: #2980b9;
+            background: #333;
         }
         
         /* 目录侧边栏 - 点击展开 */
@@ -90,10 +90,10 @@
         
         .toc-title {
             font-size: 1.2em;
-            color: #2c3e50;
+            color: #333;
             margin-bottom: 15px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #3498db;
+            border-bottom: 2px solid #555;
         }
         
         .toc-list {
@@ -108,7 +108,7 @@
         }
         
         .toc-item:hover {
-            background: #f0f7ff;
+            background: #f5f5f5;
         }
         
         .toc-link {
@@ -119,7 +119,7 @@
         }
         
         .toc-link:hover {
-            color: #3498db;
+            color: #333;
         }
         
         /* 搜索功能 */
@@ -133,6 +133,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 0.95em;
+            color: #333;
         }
         
         /* 主要内容区域 */
@@ -145,19 +146,19 @@
             border-radius: 10px;
         }
         
-        /* 章节标题自动添加锚点 */
+        /* 章节标题 - 全部黑色，仅用大小、粗细和位置区分 */
         h1, h2, h3, h4 {
-            color: #2c3e50;
+            color: #333;
             margin-top: 40px;
             padding-top: 10px;
             border-top: 1px solid #eee;
-            scroll-margin-top: 80px; /* 确保导航时不被顶部栏遮挡 */
+            scroll-margin-top: 80px;
+            font-weight: bold;
         }
         
         h1 {
             font-size: 2em;
-            color: #2c3e50;
-            border-bottom: 3px solid #3498db;
+            border-bottom: 3px solid #555;
             padding-bottom: 15px;
             margin-top: 0;
             border-top: none;
@@ -165,25 +166,25 @@
         
         h2 {
             font-size: 1.6em;
-            color: #3498db;
-            padding-left: 10px;
-            border-left: 4px solid #2ecc71;
+            padding-left: 15px;
+            border-left: 4px solid #777;
             border-top: none;
         }
         
         h3 {
             font-size: 1.3em;
-            color: #2c3e50;
-            background: #f8fafc;
+            background: #f9f9f9;
             padding: 12px 15px;
             border-radius: 5px;
             border-top: none;
+            border-left: 3px solid #999;
         }
         
         /* 内容样式 */
         p {
             margin: 15px 0;
             text-align: justify;
+            color: #333;
         }
         
         ul, ol {
@@ -192,6 +193,7 @@
         
         li {
             margin: 8px 0;
+            color: #333;
         }
         
         /* 高亮框 */
@@ -200,21 +202,22 @@
             margin: 20px 0;
             border-radius: 8px;
             border-left: 5px solid;
+            color: #333;
         }
         
         .highlight-box {
-            background: #e8f4fc;
-            border-left-color: #3498db;
+            background: #f0f0f0;
+            border-left-color: #777;
         }
         
         .tip-box {
-            background: #fff8e1;
-            border-left-color: #ffc107;
+            background: #f9f9f9;
+            border-left-color: #999;
         }
         
         .warning-box {
-            background: #ffeaea;
-            border-left-color: #e74c3c;
+            background: #f5f5f5;
+            border-left-color: #666;
         }
         
         /* 表格 */
@@ -223,10 +226,11 @@
             border-collapse: collapse;
             margin: 20px 0;
             font-size: 0.95em;
+            color: #333;
         }
         
         th {
-            background: #3498db;
+            background: #555;
             color: white;
             padding: 12px 15px;
             text-align: left;
@@ -238,7 +242,7 @@
         }
         
         tr:nth-child(even) {
-            background: #f8f9fa;
+            background: #f9f9f9;
         }
         
         /* 阅读进度条 */
@@ -254,7 +258,7 @@
         
         #progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
+            background: linear-gradient(90deg, #666, #888);
             width: 0%;
             transition: width 0.1s ease;
         }
@@ -266,7 +270,7 @@
             right: 30px;
             width: 50px;
             height: 50px;
-            background: #3498db;
+            background: #555;
             color: white;
             border: none;
             border-radius: 50%;
@@ -275,12 +279,12 @@
             align-items: center;
             justify-content: center;
             font-size: 1.2em;
-            box-shadow: 0 3px 15px rgba(52, 152, 219, 0.3);
+            box-shadow: 0 3px 15px rgba(85, 85, 85, 0.3);
             z-index: 997;
         }
         
         #back-to-top:hover {
-            background: #2980b9;
+            background: #333;
         }
         
         /* 响应式设计 */
@@ -323,6 +327,24 @@
             body {
                 background: white;
                 font-size: 12pt;
+                color: #000;
+            }
+            
+            h1, h2, h3, p, li {
+                color: #000 !important;
+            }
+            
+            h1 {
+                border-bottom-color: #000;
+            }
+            
+            h2 {
+                border-left-color: #555;
+            }
+            
+            h3 {
+                background: none;
+                border-left-color: #777;
             }
         }
     </style>
@@ -1055,16 +1077,44 @@ header, .context-menu, .megamenu-content, footer{
             document.getElementById('dark-mode').addEventListener('click', function() {
                 document.body.classList.toggle('dark-mode');
                 if (document.body.classList.contains('dark-mode')) {
+                    // 夜间模式：深色背景，浅色文字
                     document.body.style.backgroundColor = '#1a1a1a';
                     document.body.style.color = '#e0e0e0';
                     content.style.backgroundColor = '#2d2d2d';
                     content.style.color = '#e0e0e0';
+                    
+                    // 标题颜色
+                    const headings = content.querySelectorAll('h1, h2, h3');
+                    headings.forEach(heading => {
+                        heading.style.color = '#e0e0e0';
+                    });
+                    
+                    // 段落颜色
+                    const paragraphs = content.querySelectorAll('p, li');
+                    paragraphs.forEach(p => {
+                        p.style.color = '#e0e0e0';
+                    });
+                    
                     this.innerHTML = '<i class="fas fa-sun"></i> 日间';
                 } else {
+                    // 日间模式：恢复黑色主题
                     document.body.style.backgroundColor = '#f8f9fa';
                     document.body.style.color = '#333';
                     content.style.backgroundColor = 'white';
                     content.style.color = '#333';
+                    
+                    // 恢复标题颜色
+                    const headings = content.querySelectorAll('h1, h2, h3');
+                    headings.forEach(heading => {
+                        heading.style.color = '#333';
+                    });
+                    
+                    // 恢复段落颜色
+                    const paragraphs = content.querySelectorAll('p, li');
+                    paragraphs.forEach(p => {
+                        p.style.color = '#333';
+                    });
+                    
                     this.innerHTML = '<i class="fas fa-moon"></i> 夜间';
                 }
             });
@@ -1074,106 +1124,86 @@ header, .context-menu, .megamenu-content, footer{
                 window.print();
             });
             
-            // 5. 增强版自动生成目录（智能识别标题）
+            // 5. 增强版自动生成目录
             function generateTOC() {
                 const tocContainer = document.getElementById('toc-container');
                 
                 // 清空现有目录
                 tocContainer.innerHTML = '';
                 
-                // 获取内容区域的所有元素
+                // 获取内容区域的所有标题
                 const content = document.getElementById('main-content');
-                const allElements = content.querySelectorAll('*');
+                const headings = content.querySelectorAll('h1, h2, h3');
                 
-                let tocItems = [];
-                let currentIndex = 0;
-                
-                // 遍历所有元素，智能识别标题
-                allElements.forEach((element, index) => {
-                    const tagName = element.tagName.toLowerCase();
-                    
-                    // 检查是否为标题标签
-                    if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
-                        // 如果没有ID，为其添加ID
-                        if (!element.id) {
-                            element.id = 'section-' + currentIndex;
-                        }
-                        
-                        // 获取标题文本（去除可能的HTML标签）
-                        let titleText = element.textContent || element.innerText;
-                        
-                        // 如果标题是空字符串，尝试获取第一个子节点的文本
-                        if (!titleText.trim()) {
-                            const firstChild = element.firstChild;
-                            if (firstChild && firstChild.nodeType === 3) { // 文本节点
-                                titleText = firstChild.textContent.trim();
-                            }
-                        }
-                        
-                        // 创建目录项
-                        const listItem = document.createElement('li');
-                        listItem.className = 'toc-item';
-                        
-                        const link = document.createElement('a');
-                        link.href = '#' + element.id;
-                        link.className = 'toc-link';
-                        
-                        // 根据标题级别添加缩进
-                        let indent = '0px';
-                        if (tagName === 'h2') indent = '20px';
-                        if (tagName === 'h3') indent = '40px';
-                        
-                        link.style.paddingLeft = indent;
-                        link.textContent = titleText;
-                        
-                        // 添加点击事件
-                        link.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            
-                            // 确保目标元素存在
-                            const target = document.getElementById(element.id);
-                            if (target) {
-                                // 平滑滚动到目标位置
-                                target.scrollIntoView({ 
-                                    behavior: 'smooth',
-                                    block: 'start'
-                                });
-                                
-                                // 点击后关闭目录（在移动端尤其有用）
-                                if (window.innerWidth <= 768) {
-                                    document.getElementById('sidebar').classList.remove('active');
-                                }
-                            }
-                        });
-                        
-                        listItem.appendChild(link);
-                        tocItems.push({
-                            element: listItem,
-                            level: tagName,
-                            title: titleText
-                        });
-                        
-                        currentIndex++;
-                    }
-                });
-                
-                // 将目录项添加到容器中
-                tocItems.forEach(item => {
-                    tocContainer.appendChild(item.element);
-                });
-                
-                // 如果没有找到任何标题，显示提示信息
-                if (tocItems.length === 0) {
+                if (headings.length === 0) {
                     const noContentMsg = document.createElement('li');
                     noContentMsg.className = 'toc-item';
                     noContentMsg.innerHTML = '<span style="color:#999;font-style:italic;">未检测到章节标题</span>';
                     tocContainer.appendChild(noContentMsg);
+                    return;
                 }
+                
+                let tocItems = [];
+                
+                headings.forEach((heading, index) => {
+                    // 为每个标题添加ID（如果还没有）
+                    if (!heading.id) {
+                        heading.id = 'section-' + index;
+                    }
+                    
+                    // 获取标题文本
+                    let titleText = heading.textContent || heading.innerText;
+                    
+                    // 创建目录项
+                    const listItem = document.createElement('li');
+                    listItem.className = 'toc-item';
+                    
+                    const link = document.createElement('a');
+                    link.href = '#' + heading.id;
+                    link.className = 'toc-link';
+                    
+                    // 根据标题级别添加缩进
+                    const tagName = heading.tagName.toLowerCase();
+                    let indent = '0px';
+                    if (tagName === 'h2') indent = '20px';
+                    if (tagName === 'h3') indent = '40px';
+                    
+                    link.style.paddingLeft = indent;
+                    link.textContent = titleText;
+                    
+                    // 添加点击事件
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        
+                        // 确保目标元素存在
+                        const target = document.getElementById(heading.id);
+                        if (target) {
+                            // 平滑滚动到目标位置
+                            target.scrollIntoView({ 
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                            
+                            // 点击后关闭目录（在移动端尤其有用）
+                            if (window.innerWidth <= 768) {
+                                document.getElementById('sidebar').classList.remove('active');
+                            }
+                        }
+                    });
+                    
+                    listItem.appendChild(link);
+                    tocItems.push(listItem);
+                });
+                
+                // 将目录项添加到容器中
+                tocItems.forEach(item => {
+                    tocContainer.appendChild(item);
+                });
                 
                 // 更新目录计数
                 const tocTitle = document.querySelector('.toc-title');
-                if (tocTitle && tocItems.length > 0) {
-                    tocTitle.innerHTML = `<i class="fas fa-bookmark"></i> 章节导航 (${tocItems.length}章)`;
+                if (tocTitle && headings.length > 0) {
+                    tocTitle.innerHTML = `<i class="fas fa-bookmark"></i> 章节导航 (${headings.length}章)`;
                 }
             }
             
@@ -1181,6 +1211,12 @@ header, .context-menu, .megamenu-content, footer{
             document.getElementById('search-input').addEventListener('input', function() {
                 const searchTerm = this.value.trim().toLowerCase();
                 const tocItems = document.querySelectorAll('.toc-item');
+                
+                // 先移除可能存在的"无结果"提示
+                const existingNoResults = document.querySelector('.no-results');
+                if (existingNoResults) {
+                    existingNoResults.remove();
+                }
                 
                 if (!searchTerm) {
                     // 如果没有搜索词，显示所有目录项
@@ -1190,24 +1226,23 @@ header, .context-menu, .megamenu-content, footer{
                     return;
                 }
                 
-                // 隐藏所有目录项
-                tocItems.forEach(item => {
-                    item.style.display = 'none';
-                });
+                let foundCount = 0;
                 
-                // 显示匹配的目录项
+                // 显示匹配的目录项，隐藏不匹配的
                 tocItems.forEach(item => {
                     const link = item.querySelector('a');
                     if (link && link.textContent.toLowerCase().includes(searchTerm)) {
                         item.style.display = 'flex';
+                        foundCount++;
+                    } else {
+                        item.style.display = 'none';
                     }
                 });
                 
                 // 如果没有匹配项，显示提示
-                const visibleItems = document.querySelectorAll('.toc-item[style="display: flex;"]');
-                if (visibleItems.length === 0) {
+                if (foundCount === 0) {
                     const noResults = document.createElement('li');
-                    noResults.className = 'toc-item';
+                    noResults.className = 'toc-item no-results';
                     noResults.innerHTML = `<span style="color:#999;font-style:italic;">未找到包含"${searchTerm}"的章节</span>`;
                     noResults.style.display = 'flex';
                     
@@ -1312,23 +1347,6 @@ header, .context-menu, .megamenu-content, footer{
                 
                 // 初始检查返回顶部按钮
                 updateBackToTopButton();
-                
-                // 添加一个友好的加载提示
-                const loadingMsg = document.createElement('div');
-                loadingMsg.style.cssText = 'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.7);color:white;padding:20px;border-radius:10px;z-index:1001;';
-                loadingMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 正在加载手册...';
-                document.body.appendChild(loadingMsg);
-                
-                // 1秒后移除加载提示
-                setTimeout(() => {
-                    loadingMsg.style.opacity = '0';
-                    loadingMsg.style.transition = 'opacity 0.5s ease';
-                    setTimeout(() => {
-                        if (loadingMsg.parentNode) {
-                            loadingMsg.parentNode.removeChild(loadingMsg);
-                        }
-                    }, 500);
-                }, 1000);
                 
                 console.log('家庭成长陪伴手册已加载完成，共检测到章节标题：', 
                     document.querySelectorAll('#main-content h1, #main-content h2, #main-content h3').length);
